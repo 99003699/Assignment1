@@ -1,40 +1,51 @@
-#include <stdio.h>
-#include <string.h>
 #include "mystring.h"
+#include <stdio.h>
 
-char mystrcat(char d[], char e[])
+char* mystrcpy(char* dest,const char *src)  //const char str[]
 {
-    strcat(d,e);
+  int k=0;
+  while(src[k]!='\0')  //while(dest[k++]=src[k])
+  {
+    dest[k]=src[k];
+    k++;
+  }
+  dest[k]='\0';
+  
+}
 
-    //String obtained on concatenation);
+int mystrlen(const char *str)  //const char str[]
+	{
+	  int k=0;
+	  while(str[k]!='\0')  //while(str[k++])
+	    k++;
+	  return k;
+	}
 
-    return d;
-
+char* mystrcat(char* dest,const char *src)  //const char str[]
+{
+  int i=0,j=0;
+  while(dest[i]!='\0')
+    i++;
+  while(src[j]!='\0')  //while(dest[i++]=src[j++])
+  {
+    dest[i]=src[j];
+    i++;
+    j++;
+  }
+  dest[i]='\0';
+  return dest;
 }
 
 
-
-char mystrcmp(char b[], char c[])
+int mystrcmp(const char* str1,const char* str2)
 {
-
-    if( strcmp(b, c) == 0 )
-        return 1; //Entered strings are equal
-    else
-        return 0; //Entered strings are not equal
-}
-
-char mystrcpy(char destinaton[], char source[])
-{
-
-  strcpy(destinaton, source);
-
-
-  return destinaton;
-}
-
-int mystrlen(char a[100])
-{
-  int length;
-  length = strlen(a);
-  return length;
+  int i=0;
+  while(str1[i]==str2[i]&&str1[i]!='\0'&&str2[i]!='\0')
+    i++;
+  if(str1[i]==str2[i])
+    return 0;
+  else if (str1[i] < str2[i])
+    return -1;
+  else //ps1[i] > ps2[i]
+    return +1;
 }
